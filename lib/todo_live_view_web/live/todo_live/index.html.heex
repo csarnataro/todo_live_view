@@ -1,0 +1,26 @@
+<.header>
+  Todos
+</.header>
+
+<.live_component
+  module={TodoLiveViewWeb.TodoLive.FormComponent}
+  id={@todo.id || :new}
+  text_value={nil}
+  todo={@todo}
+/>
+<.live_component module={TodoLiveViewWeb.TodoLive.ListComponent} items={@items} id="todos_list" />
+
+<div>
+  Show:
+  <ul class="flex gap-4">
+    <li>
+      <.link patch={~p"/?filter_by=all"} class="text-blue-600 underline">All</.link>
+    </li>
+    <li>
+      <.link patch={~p"/?filter_by=active"} class="text-blue-600 underline">Active</.link>
+    </li>
+    <li>
+      <.link patch={~p"/?filter_by=completed"} class="text-blue-600 underline">Completed</.link>
+    </li>
+  </ul>
+</div>

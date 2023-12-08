@@ -1,0 +1,49 @@
+<div>
+  <.table
+    id="todos"
+    rows={@items}
+    row_click={fn todo -> JS.push("toggle_todo", value: %{id: todo.id}, target: @myself) end}
+  >
+    <:col :let={todo} label="Text"><%= todo.text %></:col>
+    <:col :let={todo} label="Completed">
+      <.input
+        field={todo.completed}
+        type="checkbox"
+        name="completed"
+        value={todo.completed}
+        phx-click="toggle_todo"
+        phx-value-id={todo.id}
+        phx-target={@myself}
+      />
+    </:col>
+    <:action :let={todo}>
+      <.link
+        id={"todo-#{todo.id}"}
+        class="rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 "
+        phx-click={JS.push("delete", value: %{id: todo.id}, target: @myself)}
+      >
+        Delete
+      </.link>
+    </:action>
+  </.table>
+  <%!-- 
+  <ul>
+    <%= for item <- @items do %>
+      <li id={"item-#{item.id}"}>
+        <.input
+          field={item.completed}
+          value=""
+          type="checkbox"
+          label="Completed"
+          name="completed"
+        />
+        <p class="todo_item">
+          <%= item.text %>
+        </p>
+        <button class="delete_btn">
+          Delete
+        </button>
+      </li>
+    <% end %>
+  </ul> --%>
+</div>

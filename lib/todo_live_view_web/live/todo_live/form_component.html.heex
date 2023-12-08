@@ -1,0 +1,14 @@
+<div>
+  <.simple_form
+    for={@form}
+    id="todo-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="create_todo"
+  >
+    <.input field={@form[:text]} type="text" label="Text" autocomplete="off" />
+    <:actions>
+      <.button phx-disable-with="Adding...">Add Todo</.button>
+    </:actions>
+  </.simple_form>
+</div>
